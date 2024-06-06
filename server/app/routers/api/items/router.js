@@ -2,21 +2,23 @@ const express = require("express");
 
 const router = express.Router();
 
+const sayWelcome = (req, res) => {
+    res.send("Welcome to Wild Series !");
+};
+
+router.get("/", sayWelcome);
+
 /* ************************************************************************* */
-// Define Your API Routes Here
+// Import And Use Routers Here
 /* ************************************************************************* */
 
-// Import item-related actions
-const { browse, read, add } = require("../../../controllers/itemActions");
+const programsRouter = require("../../programs/router");
 
-// Route to get a list of items
-router.get("/", browse);
+router.use("/programs", programsRouter);
 
-// Route to get a specific item by ID
-router.get("/:id", read);
+const itemsRouter = require("../router");
 
-// Route to add a new item
-router.post("/", add);
+router.use("/items", itemsRouter);
 
 /* ************************************************************************* */
 
