@@ -1,20 +1,34 @@
 // Some data to make the trick
 
 const categories = [
-    {
+  {
     id: 1,
     name: "Science-Fiction",
-    },
-    {
+  },
+  {
     id: 2,
     name: "Comédie",
-    },
+  },
 ];
 
-  // Declare the actions
+// Declare the actions
 
-  /* Here you code */
+const browse = (req, res) => {
+  res.json(categories);
+};
 
-  // Export them to import them somewhere else
+const read = (req, res) => {
+  const parsedId = parseInt(req.params.id, 10);
 
-  module.exports = { categories /* Here you export */ };
+  const category = categories.find((p) => p.id === parsedId);
+
+  if (category != null) {
+    res.json(category);
+  } else {
+    res.sendStatus(404);
+  }
+};
+
+// Export them to import them somewhere else
+
+module.exports = { browse, read };
