@@ -25,10 +25,10 @@ const programs = [
 
   // Declare the action
 
-    const browse = (req, res) => {
+const browse = (req, res) => {
     res.json(programs);
 };
 
   // Export it to import it somewhere else
 
-    module.exports = { browse };
+module.exports = { browse };
